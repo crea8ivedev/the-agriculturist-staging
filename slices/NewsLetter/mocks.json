@@ -1,0 +1,108 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"preheading": {
+				"__TYPE__": "FieldContent",
+				"type": "Text",
+				"value": "THE LATEST MEDICAL CANNABIS & CBD NEWS"
+			},
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Subscribe to our newsletter and stay update",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"placeholder_text": {
+				"__TYPE__": "FieldContent",
+				"type": "Text",
+				"value": "Email Address"
+			},
+			"button_text": {
+				"__TYPE__": "FieldContent",
+				"type": "Text",
+				"value": "SUBSCRIBE"
+			},
+			"background_color": {
+				"__TYPE__": "FieldContent",
+				"type": "Color",
+				"value": "#F9F4EF"
+			},
+			"border_color": {
+				"__TYPE__": "FieldContent",
+				"type": "Color",
+				"value": "#004D43"
+			},
+			"background_image": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1576662712957-9c79ae1280f8",
+					"width": 3456,
+					"height": 3456
+				},
+				"url": "https://images.unsplash.com/photo-1576662712957-9c79ae1280f8",
+				"width": 3456,
+				"height": 3456,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"credits": null,
+				"alt": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"button_background_color": {
+				"__TYPE__": "FieldContent",
+				"type": "Color",
+				"value": "#004D43"
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Explore the latest cannabis news, lifestyle tips, education and more from Cania, the world’s cannabis information resource.",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"preheading_color": {
+				"__TYPE__": "FieldContent",
+				"type": "Color",
+				"value": "#598B84"
+			},
+			"title_color": {
+				"__TYPE__": "FieldContent",
+				"type": "Color",
+				"value": "#004D43"
+			},
+			"description_color": {
+				"__TYPE__": "FieldContent",
+				"type": "Color",
+				"value": "#10100F"
+			},
+			"button_text_color": {
+				"__TYPE__": "FieldContent",
+				"type": "Color",
+				"value": "#004D43"
+			}
+		},
+		"items": []
+	}
+]

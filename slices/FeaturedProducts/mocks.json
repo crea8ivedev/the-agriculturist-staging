@@ -1,0 +1,74 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Discover our cannabis \naccessories and products",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"sub_title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "WE PRODUCE A HIGH QUALITY PRODUCT",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"background_color": {
+				"__TYPE__": "FieldContent",
+				"type": "Color",
+				"value": "#F9F4EF"
+			},
+			"button_text": {
+				"__TYPE__": "FieldContent",
+				"type": "Text",
+				"value": "Shop Now"
+			},
+			"button_link": {
+				"key": "7acec502-368a-4dac-8aee-fd9e7d9d4868",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://prismic.io",
+					"text": "yellow"
+				}
+			},
+			"button_text_color": {
+				"__TYPE__": "FieldContent",
+				"type": "Color",
+				"value": "#FFFFFF"
+			},
+			"button_background_color": {
+				"__TYPE__": "FieldContent",
+				"type": "Color",
+				"value": "#004D43"
+			},
+			"subtitle_color": {
+				"__TYPE__": "FieldContent",
+				"type": "Color",
+				"value": "#80A6A1"
+			},
+			"title_color": {
+				"__TYPE__": "FieldContent",
+				"type": "Color",
+				"value": "#004D43"
+			}
+		},
+		"items": []
+	}
+]

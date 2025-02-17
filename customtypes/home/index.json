@@ -1,14 +1,33 @@
 {
   "format": "page",
   "id": "home",
+  "label": "Home",
+  "repeatable": false,
+  "status": true,
   "json": {
     "Main": {
       "slices": {
-        "config": {
-          "choices": {}
-        },
+        "type": "Slices",
         "fieldset": "Slice Zone",
-        "type": "Slices"
+        "config": {
+          "choices": {
+            "featured_products": {
+              "type": "SharedSlice"
+            },
+            "header": {
+              "type": "SharedSlice"
+            },
+            "news_letter": {
+              "type": "SharedSlice"
+            },
+            "image_with_text": {
+              "type": "SharedSlice"
+            },
+            "slider": {
+              "type": "SharedSlice"
+            }
+          }
+        }
       }
     },
     "SEO & Metadata": {
@@ -38,8 +57,5 @@
         "type": "Image"
       }
     }
-  },
-  "label": "Home",
-  "repeatable": false,
-  "status": true
+  }
 }

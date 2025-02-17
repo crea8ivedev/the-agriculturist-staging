@@ -1,197 +1,105 @@
-import { isFilled } from "@prismicio/client";
-import { PrismicNextLink, PrismicNextImage } from "@prismicio/next";
+import Heading from "@/app/components/Heading";
+import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText } from "@prismicio/react";
 
-/**
- * @typedef {import("@prismicio/client").Content.HeroSlice} HeroSlice
- *
- * @typedef {import("@prismicio/react").SliceComponentProps<HeroSlice>} HeroProps
- *
- * @type {import("react").FC<HeroProps>}
- */
-const Hero = ({ slice }) => {
+const ImageWithText = ({ slice }) => {
+  const {
+    image,
+    title,
+    description,
+    button_text,
+    button_link,
+    background_color,
+    text_color,
+    button_background_color,
+    button_text_color,
+    image_position,
+  } = slice.primary;
+
+  const textStyle = { color: text_color || "#ffffff" };
+
+  const components = {
+    heading2: ({ children }) => (
+      <Heading as="h2" size="md" className="text-start mb-12" style={textStyle}>
+        {children}
+      </Heading>
+    ),
+    heading3: ({ children }) => (
+      <Heading
+        as="h3"
+        size="sm"
+        className="mb-3 font-medium sm:text-left text-center"
+        style={textStyle}
+      >
+        {children}
+      </Heading>
+    ),
+    paragraph: ({ children }) => (
+      <p
+        className="text-base font-medium font-body sm:text-left text-center"
+        style={textStyle}
+      >
+        {children}
+      </p>
+    ),
+  };
+
   return (
     <section
-      data-slice-type={slice.slice_type}
-      data-slice-variation={slice.variation}
-      className="es-bounded es-fullpage-hero"
+      className="py-16"
+      style={{ backgroundColor: background_color || "white" }}
     >
-      <div
-        className={`
-                    es-fullpage-hero__content
-                    ${
-                      slice.variation === "imageRight"
-                        ? "es-fullpage-hero__image--right"
-                        : "es-fullpage-hero__image--left"
-                    }
-        `}
-      >
-        <div>
-          {isFilled.image(slice.primary.image) && (
+      <div className="container mx-auto flex flex-col lg:flex-row items-center px-8">
+        {image_position === "Left" && (
+          <div className="lg:w-1/2 w-full mb-8 lg:mb-0">
             <PrismicNextImage
-              field={slice.primary.image}
-              className="es-fullpage-hero__image"
-            />
-          )}
-        </div>
-
-        <div className="es-fullpage-hero__content-right">
-          <div className="es-fullpage-hero__content__intro">
-            {isFilled.keyText(slice.primary.eyebrowHeadline) && (
-              <p className="es-fullpage-hero__content__intro__eyebrow">
-                {slice.primary.eyebrowHeadline}
-              </p>
-            )}
-            {isFilled.richText(slice.primary.title) && (
-              <div className="es-fullpage-hero__content__intro__headline">
-                <PrismicRichText field={slice.primary.title} />
-              </div>
-            )}
-            {isFilled.richText(slice.primary.description) && (
-              <div className="es-fullpage-hero__content__intro__description">
-                <PrismicRichText field={slice.primary.description} />
-              </div>
-            )}
-            <PrismicNextLink
-              className="es-call-to-action__link"
-              field={slice.primary.callToActionLink}
+              field={image}
+              className="w-full h-auto object-cover rounded-lg"
+              alt="image"
             />
           </div>
+        )}
+        <div
+          className={`lg:w-1/2 w-full space-y-8 ${
+            image_position === "Left" ? "lg:pl-12" : "lg:pr-12"
+          } text-center lg:text-left`}
+        >
+          <PrismicRichText
+            components={components}
+            field={title}
+            style={textStyle}
+          />
+          <PrismicRichText
+            components={components}
+            field={description}
+            style={textStyle}
+          />
+
+          {button_text && button_link && (
+            <PrismicNextLink
+              field={button_link}
+              className="inline-block px-6 py-3 text-lg rounded-full"
+              style={{
+                backgroundColor: button_background_color || "#2563eb",
+                color: button_text_color || "#ffffff",
+              }}
+            >
+              {button_text}
+            </PrismicNextLink>
+          )}
         </div>
+        {image_position === "Right" && (
+          <div className="lg:w-1/2 w-full">
+            <PrismicNextImage
+              field={image}
+              className="w-full h-auto object-cover rounded-lg"
+              alt="image"
+            />
+          </div>
+        )}
       </div>
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-            .es-bounded {
-              margin: 0px;
-              min-width: 0px;
-              position: relative;
-            }
-
-            .es-fullpage-hero {
-              font-family: system-ui, sans-serif;
-              background-color: #fff;
-              color: #333;
-            }
-
-            .es-fullpage-hero__image {
-              max-width: 100%;
-              height: auto;
-              align-self: center;
-            }
-
-            .es-fullpage-hero__image--left > div:first-child {
-              order: 1;
-            }
-
-            .es-fullpage-hero__image--left > div:nth-child(2) {
-              order: 2;
-            }
-
-            .es-fullpage-hero__image--right > div:first-child {
-              order: 2;
-            }
-
-            .es-fullpage-hero__image--right > div:nth-child(2) {
-              order: 1;
-            }
-
-            .es-fullpage-hero__content {
-              display: flex;
-              flex-direction: column;
-              gap: 2rem;
-            }
-
-            .es-fullpage-hero__content-right {
-              display: flex;
-              flex-direction: column;
-              justify-content: space-around;
-              padding: 1.5rem;
-            }
-
-            @media (min-width: 1080px) {
-              .es-fullpage-hero__content {
-                  flex-direction: row;
-              }
-
-              .es-fullpage-hero__content > div {
-                  width: 50%;
-              }
-            }
-
-            .es-fullpage-hero__content__intro {
-              display: grid;
-              gap: 1rem;
-            }
-
-            .es-fullpage-hero__content__intro__eyebrow {
-              color: #47C1AF;
-              font-size: 1.15rem;
-              font-weight: 500;
-              margin: 0;
-            }
-
-            .es-fullpage-hero__content__intro__headline {
-              font-size: 1.625rem;
-              font-weight: 700;
-            }
-
-            .es-fullpage-hero__content__intro__headline * {
-              margin: 0;
-            }
-
-            @media (min-width: 640px) {
-              .es-fullpage-hero__content__intro__headline {
-                  font-size: 2rem;
-              }
-            }
-
-            @media (min-width: 1024px) {
-              .es-fullpage-hero__content__intro__headline {
-                  font-size: 2.5rem;
-              }
-            }
-
-            @media (min-width: 1200px) {
-              .es-fullpage-hero__content__intro__headline {
-                  font-size: 2.75rem;
-              }
-            }
-
-            .es-fullpage-hero__content__intro__description {
-              font-size: 1.15rem;
-              max-width: 38rem;
-            }
-
-            .es-fullpage-hero__content__intro__description > p {
-              margin: 0;
-            }
-
-            @media (min-width: 1200px) {
-              .es-fullpage-hero__content__intro__description {
-                  font-size: 1.4rem;
-              }
-            }
-
-            .es-call-to-action__link {
-              justify-self: flex-start;
-              border-radius: 0.25rem;
-              font-size: 0.875rem;
-              line-height: 1.3;
-              padding: 1rem 2.625rem;
-              transition: background-color 100ms linear;
-              background-color: #16745f;
-              color: #fff;
-            }
-
-            .es-call-to-action__link:hover {
-              background-color: #0d5e4c;
-            }
-          `,
-        }}
-      />
     </section>
   );
 };
 
-export default Hero;
+export default ImageWithText;

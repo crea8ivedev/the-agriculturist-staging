@@ -1,8 +1,8 @@
 {
-  "id": "image_with_text",
+  "id": "featured_products",
   "type": "SharedSlice",
-  "name": "ImageWithText",
-  "description": "ImageWithText",
+  "name": "FeaturedProducts",
+  "description": "FeaturedProducts",
   "variations": [
     {
       "id": "default",
@@ -12,21 +12,20 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
-        "active": {
-          "type": "Boolean",
+        "sub_title": {
+          "type": "StructuredText",
           "config": {
-            "label": "Active",
-            "placeholder_false": "false",
-            "placeholder_true": "true",
-            "default_value": true
+            "label": "Sub Title",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,strong,em"
           }
         },
-        "image": {
-          "type": "Image",
+        "subtitle_color": {
+          "type": "Color",
           "config": {
-            "label": "Image",
-            "constraint": {},
-            "thumbnails": []
+            "label": "SubTitle Color",
+            "placeholder": ""
           }
         },
         "title": {
@@ -38,13 +37,18 @@
             "single": "heading2"
           }
         },
-        "description": {
-          "type": "StructuredText",
+        "title_color": {
+          "type": "Color",
           "config": {
-            "label": "Description",
-            "placeholder": "",
-            "allowTargetBlank": true,
-            "multi": "paragraph,strong,em"
+            "label": "Title Color",
+            "placeholder": ""
+          }
+        },
+        "background_color": {
+          "type": "Color",
+          "config": {
+            "label": "Background Color",
+            "placeholder": ""
           }
         },
         "button_text": {
@@ -65,20 +69,6 @@
             "repeat": false
           }
         },
-        "background_color": {
-          "type": "Color",
-          "config": {
-            "label": "Background Color",
-            "placeholder": ""
-          }
-        },
-        "text_color": {
-          "type": "Color",
-          "config": {
-            "label": "Text Color",
-            "placeholder": ""
-          }
-        },
         "button_background_color": {
           "type": "Color",
           "config": {
@@ -91,17 +81,6 @@
           "config": {
             "label": "Button Text Color",
             "placeholder": ""
-          }
-        },
-        "image_position": {
-          "type": "Select",
-          "config": {
-            "label": "Image Position",
-            "placeholder": "",
-            "options": [
-              "Left",
-              "Right"
-            ]
           }
         }
       },

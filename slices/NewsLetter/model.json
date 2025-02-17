@@ -1,8 +1,8 @@
 {
-  "id": "image_with_text",
+  "id": "news_letter",
   "type": "SharedSlice",
-  "name": "ImageWithText",
-  "description": "ImageWithText",
+  "name": "NewsLetter",
+  "description": "NewsLetter",
   "variations": [
     {
       "id": "default",
@@ -12,21 +12,18 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
-        "active": {
-          "type": "Boolean",
+        "preheading": {
+          "type": "Text",
           "config": {
-            "label": "Active",
-            "placeholder_false": "false",
-            "placeholder_true": "true",
-            "default_value": true
+            "label": "PreHeading",
+            "placeholder": ""
           }
         },
-        "image": {
-          "type": "Image",
+        "preheading_color": {
+          "type": "Color",
           "config": {
-            "label": "Image",
-            "constraint": {},
-            "thumbnails": []
+            "label": "PreHeading Color",
+            "placeholder": ""
           }
         },
         "title": {
@@ -38,44 +35,40 @@
             "single": "heading2"
           }
         },
+        "title_color": {
+          "type": "Color",
+          "config": {
+            "label": "Title Color",
+            "placeholder": ""
+          }
+        },
         "description": {
           "type": "StructuredText",
           "config": {
             "label": "Description",
             "placeholder": "",
             "allowTargetBlank": true,
-            "multi": "paragraph,strong,em"
+            "single": "paragraph,strong,em"
+          }
+        },
+        "description_color": {
+          "type": "Color",
+          "config": {
+            "label": "Description Color",
+            "placeholder": ""
+          }
+        },
+        "placeholder_text": {
+          "type": "Text",
+          "config": {
+            "label": "Placeholder Text",
+            "placeholder": ""
           }
         },
         "button_text": {
           "type": "Text",
           "config": {
             "label": "Button Text",
-            "placeholder": ""
-          }
-        },
-        "button_link": {
-          "type": "Link",
-          "config": {
-            "label": "Button Link",
-            "placeholder": "",
-            "select": null,
-            "allowTargetBlank": true,
-            "allowText": true,
-            "repeat": false
-          }
-        },
-        "background_color": {
-          "type": "Color",
-          "config": {
-            "label": "Background Color",
-            "placeholder": ""
-          }
-        },
-        "text_color": {
-          "type": "Color",
-          "config": {
-            "label": "Text Color",
             "placeholder": ""
           }
         },
@@ -86,22 +79,33 @@
             "placeholder": ""
           }
         },
+        "background_color": {
+          "type": "Color",
+          "config": {
+            "label": "Background Color",
+            "placeholder": ""
+          }
+        },
+        "border_color": {
+          "type": "Color",
+          "config": {
+            "label": "Border Color",
+            "placeholder": ""
+          }
+        },
+        "background_image": {
+          "type": "Image",
+          "config": {
+            "label": "Background Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
         "button_text_color": {
           "type": "Color",
           "config": {
             "label": "Button Text Color",
             "placeholder": ""
-          }
-        },
-        "image_position": {
-          "type": "Select",
-          "config": {
-            "label": "Image Position",
-            "placeholder": "",
-            "options": [
-              "Left",
-              "Right"
-            ]
           }
         }
       },

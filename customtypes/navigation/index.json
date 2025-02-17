@@ -1,0 +1,82 @@
+{
+  "format": "custom",
+  "id": "navigation",
+  "label": "Navigation",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "NavigationLink",
+          "placeholder": ""
+        }
+      },
+      "nav_items": {
+        "type": "Group",
+        "config": {
+          "label": "Nav Items",
+          "repeat": true,
+          "fields": {
+            "nav_item_image": {
+              "type": "Image",
+              "config": {
+                "label": "Nav Item Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "nav_link": {
+              "type": "Link",
+              "config": {
+                "label": "Nav Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      },
+      "nav_logo": {
+        "type": "Image",
+        "config": {
+          "label": "Nav Logo",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "nav_actions": {
+        "type": "Group",
+        "config": {
+          "label": "Nav Actions",
+          "repeat": true,
+          "fields": {
+            "action_image": {
+              "type": "Image",
+              "config": {
+                "label": "Action Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "action_link": {
+              "type": "Link",
+              "config": {
+                "label": "Action Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

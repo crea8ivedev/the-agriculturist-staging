@@ -4,7 +4,46 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type HomeDocumentDataSlicesSlice = never;
+type ContainerDocumentDataSlicesSlice = SliderSlice;
+
+/**
+ * Content for Container documents
+ */
+interface ContainerDocumentData {
+  /**
+   * Slice Zone field in *Container*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: container.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ContainerDocumentDataSlicesSlice>;
+}
+
+/**
+ * Container document from Prismic
+ *
+ * - **API ID**: `container`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ContainerDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ContainerDocumentData>,
+    "container",
+    Lang
+  >;
+
+type HomeDocumentDataSlicesSlice =
+  | FeaturedProductsSlice
+  | HeaderSlice
+  | NewsLetterSlice
+  | ImageWithTextSlice
+  | SliderSlice;
 
 /**
  * Content for Home documents
@@ -65,7 +104,706 @@ interface HomeDocumentData {
 export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 
-export type AllDocumentTypes = HomeDocument;
+/**
+ * Item in *Navigation → Nav Items*
+ */
+export interface NavigationDocumentDataNavItemsItem {
+  /**
+   * Nav Item Image field in *Navigation → Nav Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation.nav_items[].nav_item_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  nav_item_image: prismic.ImageField<never>;
+
+  /**
+   * Nav Link field in *Navigation → Nav Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation.nav_items[].nav_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  nav_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Item in *Navigation → Nav Actions*
+ */
+export interface NavigationDocumentDataNavActionsItem {
+  /**
+   * Action Image field in *Navigation → Nav Actions*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation.nav_actions[].action_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  action_image: prismic.ImageField<never>;
+
+  /**
+   * Action Link field in *Navigation → Nav Actions*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation.nav_actions[].action_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  action_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Content for Navigation documents
+ */
+interface NavigationDocumentData {
+  /**
+   * Nav Items field in *Navigation*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation.nav_items[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  nav_items: prismic.GroupField<Simplify<NavigationDocumentDataNavItemsItem>>;
+
+  /**
+   * Nav Logo field in *Navigation*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation.nav_logo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  nav_logo: prismic.ImageField<never>;
+
+  /**
+   * Nav Actions field in *Navigation*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation.nav_actions[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  nav_actions: prismic.GroupField<
+    Simplify<NavigationDocumentDataNavActionsItem>
+  >;
+}
+
+/**
+ * Navigation document from Prismic
+ *
+ * - **API ID**: `navigation`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type NavigationDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<NavigationDocumentData>,
+    "navigation",
+    Lang
+  >;
+
+export type AllDocumentTypes =
+  | ContainerDocument
+  | HomeDocument
+  | NavigationDocument;
+
+/**
+ * Primary content in *FeaturedProducts → Default → Primary*
+ */
+export interface FeaturedProductsSliceDefaultPrimary {
+  /**
+   * Sub Title field in *FeaturedProducts → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: featured_products.default.primary.sub_title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  sub_title: prismic.RichTextField;
+
+  /**
+   * SubTitle Color field in *FeaturedProducts → Default → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: featured_products.default.primary.subtitle_color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  subtitle_color: prismic.ColorField;
+
+  /**
+   * Title field in *FeaturedProducts → Default → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: featured_products.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.TitleField;
+
+  /**
+   * Title Color field in *FeaturedProducts → Default → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: featured_products.default.primary.title_color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  title_color: prismic.ColorField;
+
+  /**
+   * Background Color field in *FeaturedProducts → Default → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: featured_products.default.primary.background_color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  background_color: prismic.ColorField;
+
+  /**
+   * Button Text field in *FeaturedProducts → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: featured_products.default.primary.button_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_text: prismic.KeyTextField;
+
+  /**
+   * Button Link field in *FeaturedProducts → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: featured_products.default.primary.button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Button Background Color field in *FeaturedProducts → Default → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: featured_products.default.primary.button_background_color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  button_background_color: prismic.ColorField;
+
+  /**
+   * Button Text Color field in *FeaturedProducts → Default → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: featured_products.default.primary.button_text_color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  button_text_color: prismic.ColorField;
+}
+
+/**
+ * Default variation for FeaturedProducts Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FeaturedProductsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<FeaturedProductsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *FeaturedProducts*
+ */
+type FeaturedProductsSliceVariation = FeaturedProductsSliceDefault;
+
+/**
+ * FeaturedProducts Shared Slice
+ *
+ * - **API ID**: `featured_products`
+ * - **Description**: FeaturedProducts
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FeaturedProductsSlice = prismic.SharedSlice<
+  "featured_products",
+  FeaturedProductsSliceVariation
+>;
+
+/**
+ * Primary content in *Header → Default → Primary*
+ */
+export interface HeaderSliceDefaultPrimary {
+  /**
+   * Navigation field in *Header → Default → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: header.default.primary.navigation
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  navigation: prismic.ContentRelationshipField<"navigation">;
+}
+
+/**
+ * Default variation for Header Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeaderSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<HeaderSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Header*
+ */
+type HeaderSliceVariation = HeaderSliceDefault;
+
+/**
+ * Header Shared Slice
+ *
+ * - **API ID**: `header`
+ * - **Description**: Header
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeaderSlice = prismic.SharedSlice<"header", HeaderSliceVariation>;
+
+/**
+ * Primary content in *ImageWithText → Default → Primary*
+ */
+export interface ImageWithTextSliceDefaultPrimary {
+  /**
+   * Active field in *ImageWithText → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: image_with_text.default.primary.active
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  active: prismic.BooleanField;
+
+  /**
+   * Image field in *ImageWithText → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_with_text.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Title field in *ImageWithText → Default → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_with_text.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.TitleField;
+
+  /**
+   * Description field in *ImageWithText → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_with_text.default.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Button Text field in *ImageWithText → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_with_text.default.primary.button_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_text: prismic.KeyTextField;
+
+  /**
+   * Button Link field in *ImageWithText → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_with_text.default.primary.button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Background Color field in *ImageWithText → Default → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_with_text.default.primary.background_color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  background_color: prismic.ColorField;
+
+  /**
+   * Text Color field in *ImageWithText → Default → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_with_text.default.primary.text_color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  text_color: prismic.ColorField;
+
+  /**
+   * Button Background Color field in *ImageWithText → Default → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_with_text.default.primary.button_background_color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  button_background_color: prismic.ColorField;
+
+  /**
+   * Button Text Color field in *ImageWithText → Default → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_with_text.default.primary.button_text_color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  button_text_color: prismic.ColorField;
+
+  /**
+   * Image Position field in *ImageWithText → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_with_text.default.primary.image_position
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  image_position: prismic.SelectField<"Left" | "Right">;
+}
+
+/**
+ * Default variation for ImageWithText Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ImageWithTextSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ImageWithTextSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ImageWithText*
+ */
+type ImageWithTextSliceVariation = ImageWithTextSliceDefault;
+
+/**
+ * ImageWithText Shared Slice
+ *
+ * - **API ID**: `image_with_text`
+ * - **Description**: ImageWithText
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ImageWithTextSlice = prismic.SharedSlice<
+  "image_with_text",
+  ImageWithTextSliceVariation
+>;
+
+/**
+ * Primary content in *NewsLetter → Default → Primary*
+ */
+export interface NewsLetterSliceDefaultPrimary {
+  /**
+   * PreHeading field in *NewsLetter → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_letter.default.primary.preheading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  preheading: prismic.KeyTextField;
+
+  /**
+   * PreHeading Color field in *NewsLetter → Default → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_letter.default.primary.preheading_color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  preheading_color: prismic.ColorField;
+
+  /**
+   * Title field in *NewsLetter → Default → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_letter.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.TitleField;
+
+  /**
+   * Title Color field in *NewsLetter → Default → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_letter.default.primary.title_color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  title_color: prismic.ColorField;
+
+  /**
+   * Description field in *NewsLetter → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_letter.default.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Description Color field in *NewsLetter → Default → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_letter.default.primary.description_color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  description_color: prismic.ColorField;
+
+  /**
+   * Placeholder Text field in *NewsLetter → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_letter.default.primary.placeholder_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  placeholder_text: prismic.KeyTextField;
+
+  /**
+   * Button Text field in *NewsLetter → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_letter.default.primary.button_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_text: prismic.KeyTextField;
+
+  /**
+   * Button Background Color field in *NewsLetter → Default → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_letter.default.primary.button_background_color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  button_background_color: prismic.ColorField;
+
+  /**
+   * Background Color field in *NewsLetter → Default → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_letter.default.primary.background_color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  background_color: prismic.ColorField;
+
+  /**
+   * Border Color field in *NewsLetter → Default → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_letter.default.primary.border_color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  border_color: prismic.ColorField;
+
+  /**
+   * Background Image field in *NewsLetter → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_letter.default.primary.background_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  background_image: prismic.ImageField<never>;
+
+  /**
+   * Button Text Color field in *NewsLetter → Default → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_letter.default.primary.button_text_color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  button_text_color: prismic.ColorField;
+}
+
+/**
+ * Default variation for NewsLetter Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NewsLetterSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<NewsLetterSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *NewsLetter*
+ */
+type NewsLetterSliceVariation = NewsLetterSliceDefault;
+
+/**
+ * NewsLetter Shared Slice
+ *
+ * - **API ID**: `news_letter`
+ * - **Description**: NewsLetter
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NewsLetterSlice = prismic.SharedSlice<
+  "news_letter",
+  NewsLetterSliceVariation
+>;
+
+/**
+ * Item in *Slider → Default → Primary → Slides*
+ */
+export interface SliderSliceDefaultPrimarySlidesItem {
+  /**
+   * Slide Image field in *Slider → Default → Primary → Slides*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: slider.default.primary.slides[].slide_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  slide_image: prismic.ImageField<never>;
+
+  /**
+   * Slide Text field in *Slider → Default → Primary → Slides*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: slider.default.primary.slides[].slide_text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  slide_text: prismic.RichTextField;
+
+  /**
+   * Slide Video field in *Slider → Default → Primary → Slides*
+   *
+   * - **Field Type**: Embed
+   * - **Placeholder**: *None*
+   * - **API ID Path**: slider.default.primary.slides[].slide_video
+   * - **Documentation**: https://prismic.io/docs/field#embed
+   */
+  slide_video: prismic.EmbedField;
+}
+
+/**
+ * Primary content in *Slider → Default → Primary*
+ */
+export interface SliderSliceDefaultPrimary {
+  /**
+   * Hide Module field in *Slider → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: slider.default.primary.hide_module
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  hide_module: prismic.BooleanField;
+
+  /**
+   * Slides field in *Slider → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: slider.default.primary.slides[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  slides: prismic.GroupField<Simplify<SliderSliceDefaultPrimarySlidesItem>>;
+}
+
+/**
+ * Default variation for Slider Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SliderSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<SliderSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Slider*
+ */
+type SliderSliceVariation = SliderSliceDefault;
+
+/**
+ * Slider Shared Slice
+ *
+ * - **API ID**: `slider`
+ * - **Description**: Slider
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SliderSlice = prismic.SharedSlice<"slider", SliderSliceVariation>;
 
 declare module "@prismicio/client" {
   interface CreateClient {
@@ -88,10 +826,38 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      ContainerDocument,
+      ContainerDocumentData,
+      ContainerDocumentDataSlicesSlice,
       HomeDocument,
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,
+      NavigationDocument,
+      NavigationDocumentData,
+      NavigationDocumentDataNavItemsItem,
+      NavigationDocumentDataNavActionsItem,
       AllDocumentTypes,
+      FeaturedProductsSlice,
+      FeaturedProductsSliceDefaultPrimary,
+      FeaturedProductsSliceVariation,
+      FeaturedProductsSliceDefault,
+      HeaderSlice,
+      HeaderSliceDefaultPrimary,
+      HeaderSliceVariation,
+      HeaderSliceDefault,
+      ImageWithTextSlice,
+      ImageWithTextSliceDefaultPrimary,
+      ImageWithTextSliceVariation,
+      ImageWithTextSliceDefault,
+      NewsLetterSlice,
+      NewsLetterSliceDefaultPrimary,
+      NewsLetterSliceVariation,
+      NewsLetterSliceDefault,
+      SliderSlice,
+      SliderSliceDefaultPrimarySlidesItem,
+      SliderSliceDefaultPrimary,
+      SliderSliceVariation,
+      SliderSliceDefault,
     };
   }
 }
